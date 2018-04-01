@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "Advanced Steam Collections Manager",
+    "description": "This extension allows the user to add/remove all Steam subscribed items into/from a collection at once.",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": [
+                "http://steamcommunity.com/sharedfiles/managecollection/?id=*"
+            ],
+            "js": ["jquery.min.js", "content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "browser_action": {
+        "default_icon": "logo32.png"
+    },
+    "icons": {
+        "16": "logo16.png",
+        "32": "logo32.png",
+        "48": "logo48.png",
+        "128": "logo128.png"
+    },
+    "web_accessible_resources": ["script.js"]
+}
