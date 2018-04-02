@@ -1,4 +1,5 @@
 setTimeout(function(){
+    // Create "Add" button
     var btn_add = document.createElement("BUTTON");
     var collection_window = document.querySelector('div.collectionAddItemsSection')
     collection_window.insertBefore(btn_add,collection_window.firstChild);
@@ -15,6 +16,7 @@ setTimeout(function(){
     btn_add.style.height = '60px';
     btn_add.style['text-decoration'] = 'none';
 
+    // Create "Remove" button
     var btn_rem = document.createElement("BUTTON");
     var collection_window = document.querySelector('div.collectionAddItemsSection')
     collection_window.insertBefore(btn_rem ,collection_window.firstChild);
@@ -31,25 +33,7 @@ setTimeout(function(){
     btn_rem.style.height = '60px';
     btn_rem.style['text-decoration'] = 'none';
 
-    jQuery('button#ASCM_removeall').click(function(){
-        jQuery('div#MySubscribedItems div.itemChoice.inCollection').each(function(){
-            window.RemoveChildFromCollection(jQuery(this).attr('id').replace('choice_MySubscribedItems_',''))
-        });
-    });
-
-    function addToCollection(data, object){
-        jQuery.ajax({
-            type: "POST",
-            url: 'http://steamcommunity.com/sharedfiles/ajaxaddtocollections',
-            data: data,
-            success: function(response){
-                if(object && response.success == 1){
-                    object.addClass('inCollection');
-                }
-            }
-        });
-    }
-
+    // Bind "Add" button
     jQuery('button#ASCM_addall').click(function(){
         var items = [];
         var collection_name = jQuery('div.manageCollectionHeader div.breadcrumbs a').eq(2).text().trim();
@@ -65,4 +49,25 @@ setTimeout(function(){
             addToCollection(data, jQuery(this));
         });
     });
+
+    // Bind "Remove" button
+    jQuery('button#ASCM_removeall').click(function(){
+        jQuery('div#MySubscribedItems div.itemChoice.inCollection').each(function(){
+            window.RemoveChildFromCollection(jQuery(this).attr('id').replace('choice_MySubscribedItems_',''))
+        });
+    });
+
+    // Function to send a request to add item to a collection
+    function addToCollection(data, object){
+        jQuery.ajax({
+            type: "POST",
+            url: 'http://steamcommunity.com/sharedfiles/ajaxaddtocollections',
+            data: data,
+            success: function(response){
+                if(object && response.success == 1){
+                    object.addClass('inCollection');
+                }
+            }
+        });
+    }
 }, 0);

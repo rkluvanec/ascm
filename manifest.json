@@ -1,8 +1,9 @@
 {
     "manifest_version": 2,
     "name": "Advanced Steam Collections Manager",
+    "short_name": "ASCM",
     "description": "This extension allows the user to add/remove all Steam subscribed items into/from a collection at once.",
-    "version": "0.1",
+    "version": "0.12",
     "content_scripts": [
         {
             "matches": [
@@ -21,5 +22,6 @@
         "48": "logo48.png",
         "128": "logo128.png"
     },
-    "web_accessible_resources": ["script.js"]
+    "web_accessible_resources": ["script.js"],
+    "permissions": ["http://steamcommunity.com/sharedfiles/ajaxaddtocollections"]
 }
